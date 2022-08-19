@@ -2,13 +2,18 @@ version: '3.4'
 
 services:
 
+  proxy:
+    build: ./proxy
+    depends_on:
+      - reader
+    ports:
+      - "8080:8080"
+
   reader:
     build: ./api
     depends_on:
       - cassandra
       - influxdb
-    ports:
-      - "8080:8080"
     command: ./reader -port=8080
 
   writer:
