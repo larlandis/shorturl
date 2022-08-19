@@ -17,12 +17,12 @@ func main() {
 	// parseArgs
 	cmd.ParseArgs()
 
-	// init config
-	config.Init(cmd.ConfigFile)
-
 	// create services
-	st := storage.NewLocal()
+	st := storage.New(cmd.StorageCluster)
 	s := hash.New(st)
+
+	// init libs
+	config.Init(cmd.ConfigFile)
 
 	// start server
 	log.Printf("starting server on :%s", cmd.Port)

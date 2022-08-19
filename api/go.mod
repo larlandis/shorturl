@@ -5,12 +5,15 @@ go 1.18
 require (
 	github.com/go-chi/chi/v5 v5.0.7
 	github.com/go-chi/render v1.0.2
+	github.com/gocql/gocql v1.2.0
 	github.com/spf13/viper v1.12.0
 )
 
 require (
 	github.com/ajg/form v1.5.1 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
+	github.com/golang/snappy v0.0.3 // indirect
+	github.com/hailocab/go-hostpool v0.0.0-20160125115350-e80d13ce29ed // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/magiconair/properties v1.8.6 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
@@ -23,6 +26,7 @@ require (
 	github.com/subosito/gotenv v1.3.0 // indirect
 	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a // indirect
 	golang.org/x/text v0.3.7 // indirect
+	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.66.4 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.0 // indirect
