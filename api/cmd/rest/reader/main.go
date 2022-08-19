@@ -8,6 +8,7 @@ import (
 	"github.com/larlandis/shorturl/cmd"
 	"github.com/larlandis/shorturl/internal/pkg/config"
 	"github.com/larlandis/shorturl/internal/pkg/hash"
+	"github.com/larlandis/shorturl/internal/pkg/metrics"
 	"github.com/larlandis/shorturl/internal/pkg/rest/reader"
 	"github.com/larlandis/shorturl/internal/platform/storage"
 )
@@ -23,6 +24,7 @@ func main() {
 
 	// init libs
 	config.Init(cmd.ConfigFile)
+	metrics.Init(cmd.MetricsServer)
 
 	// start server
 	log.Printf("starting server on :%s", cmd.Port)

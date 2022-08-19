@@ -6,6 +6,7 @@ services:
     build: ./api
     depends_on:
       - cassandra
+      - influxdb
     ports:
       - "8080:8080"
     command: ./reader -port=8080
@@ -14,6 +15,7 @@ services:
     build: ./api
     depends_on:
       - cassandra
+      - influxdb
     ports:
       - "8081:8081"
     command: ./writer -port=8081
@@ -22,3 +24,24 @@ services:
     image: cassandra:latest
     ports:
       - "9042:9042"
+
+  influxdb:
+    image: influxdb:1.8
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=shorturl
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_BASIC_ENABLED=false
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+    volumes:
+      - ./graphana/dashboards:/var/lib/grafana/dashboards
+      - ./graphana/grafana-dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
+      - ./graphana/grafana-datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
