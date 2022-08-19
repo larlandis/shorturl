@@ -4,7 +4,8 @@ import (
 	"context"
 	"crypto/md5"
 	"encoding/base64"
-	"fmt"
+
+	"github.com/larlandis/shorturl/internal/pkg/errors"
 )
 
 type (
@@ -19,10 +20,12 @@ type (
 
 // CreateNewHash creates and saves a new short hash from a given string
 func (s Hash) CreateNewHash(ctx context.Context, input string, length uint) (string, error) {
+	if length < 1 {
+		return "", errors.InvalidHashLengthError
+	}
 	hash := s.hash(input, length)
 	// save pair short/input
 	err := s.storage.SavePair(ctx, input, hash)
-	fmt.Println(err)
 	return hash, err
 }
 

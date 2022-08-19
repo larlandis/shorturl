@@ -2,8 +2,9 @@ package storage
 
 import (
 	"context"
-	"fmt"
 	"sync"
+
+	"github.com/larlandis/shorturl/internal/pkg/errors"
 )
 
 type LocalStorage struct {
@@ -18,7 +19,7 @@ func (r *LocalStorage) SavePair(ctx context.Context, input string, short string)
 func (r *LocalStorage) Search(ctx context.Context, short string) (url string, err error) {
 	val, ok := r.m.Load(short)
 	if !ok {
-		return "", fmt.Errorf("value not found")
+		return "", errors.NotFoundError(nil)
 	}
 	return val.(string), nil
 }
