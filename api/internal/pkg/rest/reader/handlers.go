@@ -11,7 +11,7 @@ import (
 )
 
 type Response struct {
-	Short string `json:"short,omitempty"`
+	Data string `json:"data"`
 }
 
 func (s *Server) getHash() http.HandlerFunc {
@@ -30,6 +30,6 @@ func (s *Server) getHash() http.HandlerFunc {
 			rest.Error(w, err)
 			return
 		}
-		render.JSON(w, r, Response{Short: data})
+		render.JSON(w, r, Response{Data: data})
 	}
 }

@@ -14,13 +14,13 @@ var (
 )
 
 func TestHash_CreateAndGetHash(t *testing.T) {
-	data := "input_data"
+	data := "data"
 	short, err := s.CreateNewHash(ctx, data, 8)
 	if err != nil {
 		t.Errorf(err.Error())
 	}
-	if short != "0d5DD6rv" {
-		t.Errorf("want: %s, got: %s", "0d5DD6rv", short)
+	if short != "jXd-OF09" {
+		t.Errorf("want: %s, got: %s", "jXd-OF09", short)
 	}
 	input, err := s.GetFromHash(ctx, short)
 	if err != nil {

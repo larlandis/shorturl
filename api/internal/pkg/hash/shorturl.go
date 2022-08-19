@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/md5"
 	"encoding/base64"
+	"strings"
 
 	"github.com/larlandis/shorturl/internal/pkg/errors"
 )
@@ -24,6 +25,7 @@ func (s Hash) CreateNewHash(ctx context.Context, input string, length uint) (str
 		return "", errors.InvalidHashLengthError
 	}
 	hash := s.hash(input, length)
+	hash = strings.Replace(hash, "/", "-", -1)
 	// save pair short/input
 	err := s.storage.SavePair(ctx, input, hash)
 	return hash, err
